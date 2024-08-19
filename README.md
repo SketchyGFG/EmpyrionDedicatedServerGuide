@@ -189,7 +189,6 @@ Steps:
 2. Extract the contents of the software archive into the following location: d:\nssm  The folders for src, win32, and win64 should be directly under the top folder.
 3. Place the software archive into the following location: d:\installers
 
-
 ### 1.9 - Install scenario
 
 Since there is usually no way to download the scenario directly from steam without providing personal information it is recommended to update the scenario from a personal account using something like https://justbeamit.com/.
@@ -201,11 +200,10 @@ Steps:
 2. Decompress that archive to a location outside of the game folder, like `d:\installers`.
 3. Check that the file `gameoptions.yaml` is visible just under the folder or un-nest folders until it is.
 4. Since this guide expects to be dealing with the RE2 Beta scenario, we will name the folder RE2Beta.
-4. Check that the a scenario folder with the same name does not exist in: `d:\empyrion\Content\Scenarios`.
-5. Migrate the scenario folder to: `d:\empyrion\Content\Scenarios`.
+5. Check that a scenario folder with the same name does not exist in: `d:\empyrion\Content\Scenarios`.
+6. Migrate the scenario folder to: `d:\empyrion\Content\Scenarios`.
 7. Apply any changes to the game the are desired.
-6. Initial game defaults are stored in: `gameoptions.yaml` and should be set before starting the game for the first time.  It is possible to use the EAH to apply these settings without starting the game server.  Use the EAH and check/set these now.
-
+6. Initial game defaults are stored in: `d:\empyrion\Content\Scenarios\RE2Beta\gameoptions.yaml` and should be set before starting the game for the first time.  It is possible to use the EAH to apply these settings without starting the game server.  Use the EAH and check/set these now.
 
 ### 1.10 - Game configuration
 	1.10.1 - ESM
@@ -469,7 +467,6 @@ Arguments		tool-shareddata-server
 
 Do not start these services at this time.
 
-
 #### 1.10.5 - Scenario
 
 The following setting must be set before starting the game for the first time.  It is possible to use the EAH to apply these settings without starting the game server.
@@ -508,7 +505,6 @@ Options:
 Incoming game ports that matter:
 - Empyrion: `30000 - 30004`
 - ESM: `27440`
-
 
 ### 1.12 - Backups
 
@@ -707,7 +703,6 @@ d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_u
 d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
 ```
 The verify fuction may not activate on the first use so it's important to execute the command multiple times until it does.
-
 
 ### 4.8 - Erase existing game to start new game
 
