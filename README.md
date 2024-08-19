@@ -2,7 +2,9 @@
 
 ## 2024-08-18 (y-m-d)
 
-The knowledge contained within this guide was collected thru the contribution of many people.  This guide offers a single perspective for running an Empyrion server on a headless, Windows server.  Some effort has been made to allow the reader to enter this document at any point without having to read everything, but please be mindful that it is impossible to provide everything needed at every given point without being terribly redundant.  While maintenance to this article may be given for errors, clarity and facts, the author has no interest in discussing the contents of this article or variations of it.  The author encourages others to build a server and learn from the experience.  Do it your way.  The author may responded to DM.  It is expected that at some point in time this document, in whole or in part, will no longer be accurate.
+The knowledge contained within this guide was collected thru the contribution of many people.  This guide offers a single perspective for running an Empyrion server on a headless, Windows server.  Some effort has been made to allow the reader to enter this document at any point without having to read everything, but please be mindful that it is impossible to provide everything needed at every given point without being terribly redundant.
+
+While maintenance to this article may be given for errors, clarity and facts, the author has no interest in discussing the contents of this article or variations of it.  The author encourages others to build a server and learn from the experience.  Do it your way.  It is expected that at some point in time this document, in whole or in part, will no longer be accurate.
 
 The contents of this guide was developed while running a large game server on recent hardware.  The situation was somewhat ideal and so we don't mention many problems that can be had.
 
@@ -12,6 +14,8 @@ In this guide we are making use of software built by other people, some of them 
 - Empyrion Admin Helper (EAH)
 - Empyrion Server Manager(ESM)
 - Empyrion Web Access(EWA)
+
+See this guide for further research: [Guide](https://empyrion.fandom.com/wiki/Guide/Setting_Up_Dedicated_Server)
 
 ************************************************************************
 
@@ -27,18 +31,19 @@ CONTENTS:
 	1.6 - Install base game
 	1.7 - Install required code libraries
 	1.8 - Install NSSM
-	1.9 - Game configuration
-	1.10 - Game ports
-	1.11 - Backups
-	1.12 - Ramdisk first time setup
-	1.13 - Initial game startup
-	1.14 - Non-Initial game startup
+	1.9 - Install scenario
+	1.10 - Game configuration
+	1.11 - Game ports
+	1.12 - Backups
+	1.13 - Ramdisk first time setup
+	1.14 - Initial game startup
+	1.15 - Non-Initial game startup
  
 2 - Updates to base game
 	2.1 - Using SteamCMD to update game
 	2.2 - Server game cache folder
  
-3 - Installing scenario updates
+3 - Updates to scenario
 
 4 - Server management
 	4.1 - OS restarts
@@ -86,7 +91,7 @@ We assume we are installing this game server to a clean drive named D: and we pl
 - d:\steamcmd
 - d:\nssm
 
-FOLDERS BRIEFLY EXPLAINED:
+Folders briefly explained:
 - `d:\backups` -  primary backup folder
 - `d:\empyrion` - base game folder
 - `d:\esm` - location for esm and most related scripts
@@ -185,13 +190,29 @@ Steps:
 3. Place the software archive into the following location: d:\installers
 
 
-### 1.9 - Game configuration
-	1.9.1 - ESM
-	1.9.2 - EAH
-	1.9.3 - Base game
-	1.9.4 - NSSM
+### 1.9 - Install scenario
 
-#### 1.9.1 - ESM
+Since there is usually no way to download the scenario directly from steam without providing personal information it is recommended to update the scenario from a personal account using something like https://justbeamit.com/  The scenario you are uploading may come as a folder with a number for a name like: 3143225812.  Zip this folder like it is and beam it up to the server.  It's best that you do NOT use that number as the same name as the scenario folder on the server, so change it when you move the folder into position.
+
+Steps:
+1. Upload the scenario archive to the server.
+2. Decompress that archive to a location outside of the game folder, like `d:\installers`.
+3. Check that the file `gameoptions.yaml` is visible just under the folder or un-nest folders until it is.
+4. Since this guide expects to be dealing with the RE2 Beta scenario, we will name the folder RE2Beta.
+4. Check that the a scenario folder with the same name does not exist in: `d:\empyrion\Content\Scenarios`.
+5. Migrate the scenario folder to: `d:\empyrion\Content\Scenarios`.
+7. Apply any changes to the game the are desired.
+6. Initial game defaults are stored in: `gameoptions.yaml` and should be set before starting the game for the first time.  It is possible to use the EAH to apply these settings without starting the game server.  Use the EAH and check/set these now.
+
+
+### 1.10 - Game configuration
+	1.10.1 - ESM
+	1.10.2 - EAH
+	1.10.3 - Base game
+	1.10.4 - NSSM
+	1.10.5 - Scenario
+
+#### 1.10.1 - ESM
 
 Configuration and files to be found in the location:
 
@@ -319,7 +340,7 @@ FILE: SqlQueries_disabled.txt, top only
 # -------------------- RkgPlayerKills
 ```
 
-#### 1.9.2 - EAH
+#### 1.10.2 - EAH
 
 EAH configuration and files to be found in the location: `d:\empyrion\DedicatedServer\EmpyrionAdminHelper\Config`. Do not rename these files except to make backups. Setup of the EAH is best done from within the EAH where settings are consolidated into interface.
 
@@ -329,7 +350,7 @@ Files:
 - `TimeTable.XML` - Automation provided thru EAH.
 - `Chatbot_Options.XML` - Text sources for some CB: options.
 
-#### 1.9.3 - Base game
+#### 1.10.3 - Base game
 
 Configuration and files to be found in the location `d:\empyrion`
 
@@ -411,9 +432,9 @@ REM ############################################################################
 REM ## script start
 ```
 
-#### 1.9.4 - NSSM
+#### 1.10.4 - NSSM
 
-The NSSM must be called from an administrative command line.  We are only providing settings that matter, and so anything else does not matter.  Create the services below using provided information.
+The NSSM must be called from an administrative command line.  We are only providing settings that matter, and so anything else does not matter.  Create the services below using provided information.  Do not start these services at this time.
 
 1. Empyrion_StarterService:
 
@@ -427,6 +448,8 @@ Description		Empyrion_StarterService
 Path			d:\empyrion\DedicatedServer\EmpyrionAdminHelper\EmpAdminHelper_StarterService.exe
 Startup directory	d:\empyrion\DedicatedServer\EmpyrionAdminHelper
 ```
+
+Do not start these services at this time.
 
 2.) Empyrion_SharedDataServer:
 
@@ -442,14 +465,50 @@ Startup directory	d:\esm
 Arguments		tool-shareddata-server
 ```
 
-### 1.10 - Games ports
+Do not start these services at this time.
+
+
+#### 1.10.5 - Scenario
+
+The following setting must be set before starting the game for the first time.  It is possible to use the EAH to apply these settings without starting the game server.
+
+FILE: gameoptions.yaml, RE2 Beta server, whole file
+```
+Options:
+- ValidFor:
+  - MP
+  - Survival
+  DecayTime: 0
+  MaxStructures: 2000
+  AntiGriefDistancePvE: 0
+  AntiGriefDistancePvP: 0
+  AntiGriefOresDistance: 0
+  EnableVolumeWeight: true
+  EnableCPUPoints: true
+  AutoMinerDepletion: false
+  GroundedStructureSpawn: false
+  TurretUndergroundCheck: true
+  OriginAccessOthers: false
+  OriginAutoAlliance: false
+  MaxSpawnedEnemies: 60
+  DespawnEscapePod: true
+  RegeneratePOIs: true
+  CustomPlayerTab: Scenario Change Log;https://steamcommunity.com/sharedfiles/filedetails/changelog/3143225812
+  DiffAmountOfOre: Rich
+  DiffNumberOfDeposits: Plenty
+  AntiGriefDistancePvE: 0
+  AntiGriefDistancePvP: 0
+  GroundedStructureSpawn: False
+```
+
+### 1.11 - Games ports
 
 Incoming game ports that matter:
 - Empyrion: `30000 - 30004`
 - ESM: `27440`
 
 
-### 1.11 - Backups
+### 1.12 - Backups
 
 When setting up backup routines we prefer to combine folders into one game backup location to reduce the load on management and allow for relocation if desired.  The base game wants to use a specific backup folder by default so I will link that folder to the real backup location.  Next I will create a task in the timetables of the EAH to backup structures.  Last I will create a windows scheduling task to automate save folders dumps to the backup location.
 
@@ -488,7 +547,7 @@ Steps:
 		Does not start a new instance						selected
 ```
 
-### 1.12 - Ramdisk first time setup
+### 1.13 - Ramdisk first time setup
 
 Steps:
 1. From an administrative command line execute the following command: `d:\esm\esm.exe check-requirements`. Review feedback and follow any guidance.
@@ -496,7 +555,7 @@ Steps:
 3. From an administrative command line execute the following command: `d:\esm\esm.exe ramdisk-setup`. This process creates the ramdisk and migrates the save game to it.
 4. From an administrative command line execute the following command: `d:\esm\esm.exe check-requirements`. Review feedback and follow any guidance.
 
-### 1.13 - Initial game startup
+### 1.14 - Initial game startup
 
 Initial game start must be manual due to windows requiring human approval of running applications.  In this case we will start the game using the EAH, giving focus to the command windows that will appear and watching for system warnings.  When the 'Open File - Security Warning' dialog appears it is important un-check the option 'Always ask before opening this file'.  You should see 3 dialogs during the startup process.  It is important to uncheck the option 'Always ask before opening this file' from each dialog before the game will fully run in the background.
 
@@ -507,11 +566,11 @@ Steps:
 4. You will see commands windows appear and you will want the top-most command window to remain in focus.
 5. Look for the `Open File - Security Warning` dialogs to appear and un-check the option `Always ask before opening this file` for each one.  There should be 3 in all.  If something about this does not look right, stop the server and try again from step 3.
 6. If all goes well and all 3 dialogs are un-checked, you should then consider testing that the server is fully functional.  Connecting to it via client is usually the best way.
-7. Stop the server and proceeding to `section 1.14`.
+7. Stop the server and proceeding to `section 1.15`.
 
-### 1.14 - Non-Initial game startup
+### 1.15 - Non-Initial game startup
 
-The following process will work once the process from `section 1.13`: Initial game startup, has been fullfilled.  If you have any problems you might consider revisiting that section. Do not start the EAH from the server or the EAH may not be running as the correct user (SYSTEM), so when you logout from the server the EAH and anything running from it will die.
+The following process will work once the process from `section 1.14`: Initial game startup, has been fullfilled.  If you have any problems you might consider revisiting that section. Do not start the EAH from the server or the EAH may not be running as the correct user (SYSTEM), so when you logout from the server the EAH and anything running from it will die.
 
 Steps:
 1. Start the `Empyrion_StarterService` service and check to see if a process for the `EmpAdminHelper_StartService.exe` is running.  We have seen this process sleep, so restart this service if you are not able to bring the EAH online in the following steps.
@@ -547,7 +606,11 @@ d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_u
 
 ### 2.2 - Server game cache folder
 
-Following some suggestion from other server operators we have on occasion attempted to remove the cache contents created by the server.  This is possible to do successfully under certain circumstances, and with a long running game can help to reduce overall game file size, and backup time.  That said, we feel that something is almost always broken when this is done.  Don't do this with any other action like a server move (ho ho, great times!).
+Following some suggestion from other server operators we have on occasion attempted to remove the cache contents created by the server.  This is possible to do successfully under certain circumstances, and with a long running game can help to reduce overall game file size, and backup time.
+
+That said, we feel that something is almost always broken when this is done.
+
+Don't do this with any other action like a server move (ho ho, great times!).
 
 Steps:
 1. Take the server down.
@@ -556,7 +619,7 @@ Steps:
 4. Listen for players with missing ships.
 
 ************************************************************************
-## 3 - Installing scenario updates
+## 3 - Updates to scenario
 
 When updates for scenarios are made available you will need to upload them to the server since there is usually no way to download them directly from steam without providing personal information.  Use https://justbeamit.com/ to migrate scenario files to the server from a local machine.  The scenario you are uploading may come as a folder with a number for a name like: 3143225812.  Zip this folder like it is and beam it up to the server.  It's best that you do NOT use that number as the same name as the scenario folder on the server, so change it when you move the folder into position.  If you make a mistake here with scenario folder placement you can and will corrupt the save game.
 
@@ -571,7 +634,7 @@ Steps:
 8. Record the name of the current scenario folder and discard the folder into Trash.
 9. Rename the updated scenario folder to the old scenario folder name.
 10. Restart the service `Empyrion_SharedDataServer` and wait a minute for service startup to complete.
-11. Continue with section 1.14 - Non-Initial game startup
+11. Continue with section 1.15 - Non-Initial game startup
 
 ************************************************************************
 ## 4 - Server management
@@ -583,7 +646,7 @@ With operating system restarts you will lose the ramdisk and it's contents unles
 Steps:
 1. From an administrative command line execute the following command: `d:\esm\esm.exe ramdisk-setup`
 2. From an administrative command line execute the following command: `d:\esm\esm.exe check-requirements`
-3. Continue with section 1.14 - Non-Initial game startup
+3. Continue with section 1.15 - Non-Initial game startup
 
 ### 4.2 - Starting the EAH
 
@@ -622,7 +685,7 @@ It may be useful to stop the Empyrion_StarterService service which will cause th
 
 ### 4.6 - Automating restarts using EAH
 
-We are using the EAH timetables to handle most automation of the game.  We will do this with two lines.  The first line will warn players of the coming restart.  The second will perform the restart as well as a wiping deposits for selected starter playfields.  To handle Thursday player structure wipes without issue we will make a restart schedule for each day of the week.  This allows me to change the schedule for one day without affecting other days.
+We are using the EAH timetables to handle most automation of the game.  We will do this with two lines.  The first line will warn players of the coming restart.  The second will perform the restart as well as a wiping deposits for selected starter playfields.  To handle Thursday player structure wipes without issue we will make a restart schedule for each day of the week.  This allows us to change the schedule for one day without affecting other days.
 ```
     <TT Ld="2024-07-24T14:03:09.5457359-04:00" W="17" A="0" P="***** RE2: DAILY REBOOT in 10 minutes *****" P2="" DZ="13:50" CC="DFCE31" AC="true" />
     <TT Ld="2024-07-24T14:03:09.5457359-04:00" W="17" A="5" P="***** RE2: DAILY REBOOT NOW *****" P2="" DZ="13:55" CC="DFA531" AC="true">
@@ -652,7 +715,7 @@ Steps:
 3. From an administrative command line execute the following command: `d:\esm\esm.exe ramdisk-install` This process may start the game momentarily to create save game files, then reorganize them for migration to the ramdisk.  Also, you may have to manually help the game exit for the install process to continue.  Look for a button on the game server screen to exit the game.  The rest will usually take care of itself.
 4. From an administrative command line execute the following command: `d:\esm\esm.exe ramdisk-setup` This process creates the ramdisk and migrates the save game to it.
 5. From an administrative command line execute the following command: `d:\esm\esm.exe check-requirements` Review feedback and follow any guidance.
-6. Continue with section 1.14 - Non-Initial game startup
+6. Continue with section 1.15 - Non-Initial game startup
 
 ************************************************************************
 ## 5 - SteamCMD
