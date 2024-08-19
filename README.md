@@ -87,14 +87,14 @@ We assume we are installing this game server to a clean drive named D: and we pl
 - d:\nssm
 
 FOLDERS BRIEFLY EXPLAINED:
-- d:\backups:  primary backup folder
-- d:\empyrion: base game folder
-- d:\esm: location for esm and most related scripts
-- d:\installers: place all installers here after use, keeping only the latest version that is in use or any new versions yet to be installed
-- d:\OSFMount: installed location of OSFMount
-- d:\PeaZip: installed location of PeaZip
-- d:\steamcmd: installed location of steamcmd
-- d:\nssm: installed location for the Non-Sucking Service Manager (NSSM)
+- `d:\backups` -  primary backup folder
+- `d:\empyrion` - base game folder
+- `d:\esm` - location for esm and most related scripts
+- `d:\installers` - place all installers here after use, keeping only the latest version that is in use or any new versions yet to be installed
+- `d:\OSFMount` - installed location of OSFMount
+- `d:\PeaZip` - installed location of PeaZip
+- `d:\steamcmd` - installed location of steamcmd
+- `d:\nssm` - installed location for the Non-Sucking Service Manager (NSSM)
 
 #### 1.1 - Configure CMD
 
@@ -149,28 +149,31 @@ We tend to create a folder named 'examples' and push any file containing the wor
 #### 1.6 - Install base game
 
 To install the base game we must invoke the SteamCMD utility and download the game directly from Steam.  The EAH will be installed at the same time and we will using it to start and stop the server.  It is important to use the validation feature whenever possible to insure fewer issues occur.  This is accomplished by adding the 'validate' option to the command AND invoking the SteamCMD utility a second time successively.  The following command is used for everything related to SteamCMD.  The order of command options matters:
-
-	d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+```
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+```
 
 Steps:
 1. Open a command line with administrative access.
 2. Use the following command to install the base game:
-
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+```
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+```
 
 3. Use the following command *again* to validate the base game:
-
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+```
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+```
 
 #### 1.7 - Install required C++ code libraries
 
-With the game installed there should now be a folder located at: D:\empyrion\_CommonRedist\vcredist\2019.  In this folder there should be the files VC_redist.x64.exe and VC_redist.x86.exe.  These installers need to be executed (just double click them) before the base game will run.  It is possible to install more recent versions of these executables as well.
+With the game installed there should now be a folder located at: `D:\empyrion\_CommonRedist\vcredist\2019`.  In this folder there should be the files VC_redist.x64.exe and VC_redist.x86.exe.  These installers need to be executed (just double click them) before the base game will run.  It is possible to install more recent versions of these executables as well.
 
 Executables:
-
-		D:\empyrion\_CommonRedist\vcredist\2019\VC_redist.x64.exe
-		D:\empyrion\_CommonRedist\vcredist\2019\VC_redist.x86.exe
-
+```
+D:\empyrion\_CommonRedist\vcredist\2019\VC_redist.x64.exe
+D:\empyrion\_CommonRedist\vcredist\2019\VC_redist.x86.exe
+```
 
 #### 1.8 - Install NSSM
 
@@ -195,10 +198,10 @@ Configuration and files to be found in the location:
 	d:\esm
 
 Files:
-- callesm-backup-sync.bat - call this file to make game backups from the ramdisk
-- callesm-backup-async.bat - call this file to make asynchronously backups from the ramdisk
-- esm-custom-config.yaml - esm configuration
-- SqlQueries_disabled.txt - file to disable rank queries
+- `callesm-backup-sync.bat` - call this file to make game backups from the ramdisk
+- `callesm-backup-async.bat` - call this file to make asynchronously backups from the ramdisk
+- `esm-custom-config.yaml` - esm configuration
+- `SqlQueries_disabled.txt` - file to disable rank queries
 
 
 FILE: callesm-backup-sync.bat, top only
@@ -321,18 +324,18 @@ FILE: SqlQueries_disabled.txt, top only
 EAH configuration and files to be found in the location: `d:\empyrion\DedicatedServer\EmpyrionAdminHelper\Config`. Do not rename these files except to make backups. Setup of the EAH is best done from within the EAH where settings are consolidated into interface.
 
 Files:
-- Settings.XML - Primary EAH configuration.
-- AdminProfile.XML - EAH users with admin access.  Helps with warping and impersonation.
-- TimeTable.XML - Automation provided thru EAH.
-- Chatbot_Options.XML - Text sources for some CB: options.
+- `Settings.XML` - Primary EAH configuration.
+- `AdminProfile.XML` - EAH users with admin access.  Helps with warping and impersonation.
+- `TimeTable.XML` - Automation provided thru EAH.
+- `Chatbot_Options.XML` - Text sources for some CB: options.
 
 ##### 1.9.3 - Base game
 
 Configuration and files to be found in the location `d:\empyrion`
 
 Files:
-- esm-dedicated.yaml - base game configuration
-- esm-starter-for-eah.cmd - file used by EAH to start game
+- `esm-dedicated.yaml` - base game configuration
+- `esm-starter-for-eah.cmd` - file used by EAH to start game
 
 FILE: esm-dedicated.yaml, Vanilla server, whole file
 ```
@@ -520,7 +523,6 @@ Steps:
 7. Functions (sidebar) - Server group: Hit the button 'Start'.  The EAH will attempt to start the server process.  It is useful to watch the process list at the server and note what is happening.  The game process will start first, then load processes for at least 2 playfields.
 8. Logout from server and check that served game continues to run.
 
-
 ************************************************************************
 ### 2 - Updates to base game
 
@@ -531,16 +533,16 @@ When an update to the base game comes out you will usually find out from all the
 Steps:
 1. Exit the game.
 2. From an administrative command line execute the following command:
-
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
-
+```
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+```
 It's important to verify the game files whenever possible.  You can't know when a problem will occur and it may not yet be obvious that there is an active problem.
 
 3. From an administrative command line execute the following command 2-3 times:
-
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
-
+```
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+```
 4. Start game normally.
 
 #### 2.2 - Server game cache folder
@@ -556,7 +558,7 @@ Steps:
 ************************************************************************
 #### 3 - Installing scenario updates
 
-When updates for scenarios are made available you will need to upload them to the server since there is usually no way to download them directly from steam without providing personal information.  Use https://justbeamit.com/ to migrate scenario files to the server from a local machine.  The scenario you are uploading may come as a folder with a number for a name like: 3143225812.  Zip this folder like it is and upload it to the server.  It's best that you do NOT use that number as the same name as the scenario folder on the server, so change it when you move the folder into position.  If you make a mistake here with scenario folder placement you can and will corrupt the save game.
+When updates for scenarios are made available you will need to upload them to the server since there is usually no way to download them directly from steam without providing personal information.  Use https://justbeamit.com/ to migrate scenario files to the server from a local machine.  The scenario you are uploading may come as a folder with a number for a name like: 3143225812.  Zip this folder like it is and beam it up to the server.  It's best that you do NOT use that number as the same name as the scenario folder on the server, so change it when you move the folder into position.  If you make a mistake here with scenario folder placement you can and will corrupt the save game.
 
 Steps:
 1. Upload the scenario archive to the server.
@@ -632,11 +634,11 @@ The EAH creates additional timeline tasks during restart so be careful with this
 It's important to verify the game files whenever possible.  You can't know when a problem will occur and it may not yet be obvious that there is an active problem.
 
 From an administrative command line execute the following command 2-3 times:
-
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
-
+```
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+```
 The verify fuction may not activate on the first use so it's important to execute the command multiple times until it does.
 
 
@@ -659,11 +661,11 @@ Documentation:
 https://developer.valvesoftware.com/wiki/SteamCMD
 
 Command:
-
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
-		d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
-
+```
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
+```
 ************************************************************************
 ### 6 - Empyrion Admin Helper (EAH)
 
