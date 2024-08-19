@@ -615,7 +615,9 @@ Steps:
 #### 4.5 - Stopping the server
 
 We will usually stop the server from the EAH using one of the available buttons in the EAH, `Stop in 5`, `Stop now`, or `Restart in 5`.  Or we may stop the server by entering the command in EAH's CMD box `saveandexit 10` and pressing the black arrow.  You must press the black arrow for the command to process.
+
 It may be important to watch the process list at the server to make sure that the game does indeed exit.  The game process can refuse to exit and the EAH will interpret this as a game restart, and, after a short time, try and stand everything back up.  Not sure what state the game would be in here, so lets avoid this if possible by force quitting the process when this appears to be the case.  Try and wait for the Robocopy process to finish before you do this, but not vital.
+
 It may be useful to stop the Empyrion_StarterService service which will cause the EAH to exit and prevent restart.  Careful with this since the EAH creates additional timeline tasks during restart and those tasks may be re-processed for the event once the EAH is brought back online.  We have not seen an easy way to negate this so be prepared to watch the whole event happen again.
 
 #### 4.6 - Automating restarts using EAH
@@ -704,7 +706,9 @@ Use the following command to see a list of possible functions:
 ### 8 - Empyrion Web Access(EWA)
 
 The EWA is a game mod and web frontend for managing an Empyrion server similar to the EAH.  This mod keeps a database much like EAH, but that database is located on the ramdisk, and over time it can and will take up a good amount of space.  The largest file will likely become HistoryBooks.db and can be removed at any time.  This tool uses port 80.  We don't know of a way to change this.  This is important since upon initial use the first admin to login into the EWA becomes the owner, so don't open port 80 if you can avoid doing so.
+
 We do not know of a way to start the EWA without first starting the game so there may not be an easy way to manage the game without EAH using the EWA alone.  However using the esm to start the game is possible.
+
 DO NOT EVER make any kind of symlink or hard link back to the main drive as this will reduce the speed of the ramdisk to be the same speed of the hard disk!
 
 Documentation:
@@ -740,8 +744,11 @@ Steps:
 ### 10 - Telnet
 
 Telnet is important for admin tools to function. For this guide the telnet server resides on port 30004.  For the sake of security, we are not openning this port to the world.
+
 Using `Putty` to connect to the server via telnet can provide yet another way to administer an empyrion server.  Once connected an admin can type `HELP` to see a list of available commands.  The list of commands here will be smaller than the list found in-game.
+
 Using the `plys` command will return a list of known and active players.  For the list of active players, the `C-Id` column provides the session id(cl) to address an active play with when using remoteex commands.
+
 There are some commands that cannot be performed on a multi-player server without causing game corruption.  Don't try and change game mode(cm).  Do your research.
 
 Example commands:
