@@ -63,7 +63,7 @@ CONTENTS:
 10 - Telnet
 ```
 
-### 1 - INITIAL INSTALLATION
+## 1 - INITIAL INSTALLATION
 
 This documents was assembled while using Windows Server 2022.  We currently expect the version of windows server will never matter.  We see no reason why this installation cannot be replicated on a Windows 10 or 11 machine.
 
@@ -96,7 +96,7 @@ FOLDERS BRIEFLY EXPLAINED:
 - `d:\steamcmd` - installed location of steamcmd
 - `d:\nssm` - installed location for the Non-Sucking Service Manager (NSSM)
 
-#### 1.1 - Configure CMD
+### 1.1 - Configure CMD
 
 When using the basic command line window in Windows you will have at least one bad quirk that can make a mess of things, `Quick Edit Mode`.  Disable this option in the Default settings for all commands lines.  You won't need it for anything, and not disabling it can allow scripts to pause forever when the command window is clicked.
 
@@ -105,7 +105,7 @@ Steps:
 2. Clear the option for `Quick Edit Mode`.
 3. Click 'OK' at the bottom right and close the current command window.
 
-#### 1.2 - Install SteamCMD
+### 1.2 - Install SteamCMD
 
 Steps:
 1. Download SteamCMD for Windows: [Download](https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip)
@@ -113,7 +113,7 @@ Steps:
 3. Extract the contents of the zip to the folder.
 4. Place the installer archive into the following location: `d:\installers`
 
-#### 1.3 - Install PeaZip
+### 1.3 - Install PeaZip
 
 PeaZip is a utility used by the ESM software for archive management. Remove any other previously install zip compression software as they can and will conflict with PeaZip.  PeaZip has everything so that you don't need anything else.
 
@@ -123,7 +123,7 @@ Steps:
 3. Install PeaZip to the following location: `d:\PeaZip`
 4. After install completes place the installer into the following location: `d:\installers`
 
-#### 1.4 - Install OSFMount
+### 1.4 - Install OSFMount
 
 OSFMount is a utility used be the ESM software for ramdisk creation.  It is one of the fastest free ramdisk solutions available.  DO NOT EVER make any kind of symlink or hard link back to the main drive as this will reduce the speed of the ramdisk to be the same speed of the hard disk!  You can link to it, but never from it.
 
@@ -132,7 +132,7 @@ Steps:
 2. Activate the installer and install OSFMount to the following location: `d:\OSFMount`
 3. After install completes place the installer into the following location: `d:\installers`
 
-#### 1.5 - Place ESM files
+### 1.5 - Place ESM files
 
 ESM software is a set of scripts that will modify the base game to run in a ramdisk and help you manage the game from that point on.
 
@@ -146,7 +146,7 @@ Steps:
 Optional:
 We tend to create a folder named 'examples' and push any file containing the word 'example' into that folder.  This helps to de-clutter the contents of the main esm folder, and keeps the examples file sane(untouched).
 
-#### 1.6 - Install base game
+### 1.6 - Install base game
 
 To install the base game we must invoke the SteamCMD utility and download the game directly from Steam.  The EAH will be installed at the same time and we will using it to start and stop the server.  It is important to use the validation feature whenever possible to insure fewer issues occur.  This is accomplished by adding the 'validate' option to the command AND invoking the SteamCMD utility a second time successively.  The following command is used for everything related to SteamCMD.  The order of command options matters:
 ```
@@ -165,7 +165,7 @@ d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_u
 d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
 ```
 
-#### 1.7 - Install required C++ code libraries
+### 1.7 - Install required C++ code libraries
 
 With the game installed there should now be a folder located at: `D:\empyrion\_CommonRedist\vcredist\2019`.  In this folder there should be the files VC_redist.x64.exe and VC_redist.x86.exe.  These installers need to be executed (just double click them) before the base game will run.  It is possible to install more recent versions of these executables as well.
 
@@ -175,7 +175,7 @@ D:\empyrion\_CommonRedist\vcredist\2019\VC_redist.x64.exe
 D:\empyrion\_CommonRedist\vcredist\2019\VC_redist.x86.exe
 ```
 
-#### 1.8 - Install NSSM
+### 1.8 - Install NSSM
 
 The Non-Sucking Service Manager (NSSM) provides and easy way to create and manage services under windows.  It is possible to install this utility anywhere so long that you can remember the path to it.  The game does not need to know where this utility is installed.  You will use this utility to install and manage windows services.
 
@@ -185,13 +185,13 @@ Steps:
 3. Place the software archive into the following location: d:\installers
 
 
-#### 1.9 - Game configuration
+### 1.9 - Game configuration
 	1.9.1 - ESM
 	1.9.2 - EAH
 	1.9.3 - Base game
 	1.9.4 - NSSM
 
-##### 1.9.1 - ESM
+#### 1.9.1 - ESM
 
 Configuration and files to be found in the location:
 
@@ -319,7 +319,7 @@ FILE: SqlQueries_disabled.txt, top only
 # -------------------- RkgPlayerKills
 ```
 
-##### 1.9.2 - EAH
+#### 1.9.2 - EAH
 
 EAH configuration and files to be found in the location: `d:\empyrion\DedicatedServer\EmpyrionAdminHelper\Config`. Do not rename these files except to make backups. Setup of the EAH is best done from within the EAH where settings are consolidated into interface.
 
@@ -329,7 +329,7 @@ Files:
 - `TimeTable.XML` - Automation provided thru EAH.
 - `Chatbot_Options.XML` - Text sources for some CB: options.
 
-##### 1.9.3 - Base game
+#### 1.9.3 - Base game
 
 Configuration and files to be found in the location `d:\empyrion`
 
@@ -411,7 +411,7 @@ REM ############################################################################
 REM ## script start
 ```
 
-##### 1.9.4 - NSSM
+#### 1.9.4 - NSSM
 
 The NSSM must be called from an administrative command line.  We are only providing settings that matter, and so anything else does not matter.  Create the services below using provided information.
 
@@ -442,14 +442,14 @@ Startup directory	d:\esm
 Arguments		tool-shareddata-server
 ```
 
-#### 1.10 - Games ports
+### 1.10 - Games ports
 
 Incoming game ports that matter:
 - Empyrion: `30000 - 30004`
 - ESM: `27440`
 
 
-#### 1.11 - Backups
+### 1.11 - Backups
 
 When setting up backup routines we prefer to combine folders into one game backup location to reduce the load on management and allow for relocation if desired.  The base game wants to use a specific backup folder by default so I will link that folder to the real backup location.  Next I will create a task in the timetables of the EAH to backup structures.  Last I will create a windows scheduling task to automate save folders dumps to the backup location.
 
@@ -488,7 +488,7 @@ Steps:
 		Does not start a new instance						selected
 ```
 
-#### 1.12 - Ramdisk first time setup
+### 1.12 - Ramdisk first time setup
 
 Steps:
 1. From an administrative command line execute the following command: `d:\esm\esm.exe check-requirements`. Review feedback and follow any guidance.
@@ -496,7 +496,7 @@ Steps:
 3. From an administrative command line execute the following command: `d:\esm\esm.exe ramdisk-setup`. This process creates the ramdisk and migrates the save game to it.
 4. From an administrative command line execute the following command: `d:\esm\esm.exe check-requirements`. Review feedback and follow any guidance.
 
-#### 1.13 - Initial game startup
+### 1.13 - Initial game startup
 
 Initial game start must be manual due to windows requiring human approval of running applications.  In this case we will start the game using the EAH, giving focus to the command windows that will appear and watching for system warnings.  When the 'Open File - Security Warning' dialog appears it is important un-check the option 'Always ask before opening this file'.  You should see 3 dialogs during the startup process.  It is important to uncheck the option 'Always ask before opening this file' from each dialog before the game will fully run in the background.
 
@@ -509,7 +509,7 @@ Steps:
 6. If all goes well and all 3 dialogs are un-checked, you should then consider testing that the server is fully functional.  Connecting to it via client is usually the best way.
 7. Stop the server and proceeding to `section 1.14`.
 
-#### 1.14 - Non-Initial game startup
+### 1.14 - Non-Initial game startup
 
 The following process will work once the process from `section 1.13`: Initial game startup, has been fullfilled.  If you have any problems you might consider revisiting that section. Do not start the EAH from the server or the EAH may not be running as the correct user (SYSTEM), so when you logout from the server the EAH and anything running from it will die.
 
@@ -524,9 +524,9 @@ Steps:
 8. Logout from server and check that served game continues to run.
 
 ************************************************************************
-### 2 - Updates to base game
+## 2 - Updates to base game
 
-#### 2.1 - Using SteamCMD to update game
+### 2.1 - Using SteamCMD to update game
 
 When an update to the base game comes out you will usually find out from all the players who will no longer be able to connect to the server.  This is an important aspect of the survival game player experience and should not be avoided.  Try and wait until at least 5 members complain, then notice the update.  If you don't have 5 players on your server you may have to create a couple and pretend.
 
@@ -545,7 +545,7 @@ d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_u
 ```
 4. Start game normally.
 
-#### 2.2 - Server game cache folder
+### 2.2 - Server game cache folder
 
 Following some suggestion from other server operators we have on occasion attempted to remove the cache contents created by the server.  This is possible to do successfully under certain circumstances, and with a long running game can help to reduce overall game file size, and backup time.  That said, we feel that something is almost always broken when this is done.  Don't do this with any other action like a server move (ho ho, great times!).
 
@@ -556,7 +556,7 @@ Steps:
 4. Listen for players with missing ships.
 
 ************************************************************************
-#### 3 - Installing scenario updates
+## 3 - Installing scenario updates
 
 When updates for scenarios are made available you will need to upload them to the server since there is usually no way to download them directly from steam without providing personal information.  Use https://justbeamit.com/ to migrate scenario files to the server from a local machine.  The scenario you are uploading may come as a folder with a number for a name like: 3143225812.  Zip this folder like it is and beam it up to the server.  It's best that you do NOT use that number as the same name as the scenario folder on the server, so change it when you move the folder into position.  If you make a mistake here with scenario folder placement you can and will corrupt the save game.
 
@@ -574,9 +574,9 @@ Steps:
 11. Continue with section 1.14 - Non-Initial game startup
 
 ************************************************************************
-### 4 - Server management
+## 4 - Server management
 
-#### 4.1 - OS restarts
+### 4.1 - OS restarts
 
 With operating system restarts you will lose the ramdisk and it's contents unless properly saved back to the game folders.  The ESM will dump the ramdisk back to the hard drive every hour so rollback time is minimized.
 
@@ -585,7 +585,7 @@ Steps:
 2. From an administrative command line execute the following command: `d:\esm\esm.exe check-requirements`
 3. Continue with section 1.14 - Non-Initial game startup
 
-#### 4.2 - Starting the EAH
+### 4.2 - Starting the EAH
 
 Steps:
 1. Start the `Empyrion_StarterService` service and check to see if a process for the `EmpAdminHelper_NoGUI.exe` is running.  We have seen this process sleep, so restart this service if you are not able to bring the EAH online in the following steps.
@@ -595,13 +595,13 @@ Steps:
 5. Exit the EAH slave client !!!
 6. Start the EAH slave client again.  The client should now connect to the `EmpAdminHelper_NoGUI.exe` process.  You should see a green circle in the orange connect button.
 
-#### 4.3 - Stopping the EAH
+### 4.3 - Stopping the EAH
 
 Steps:
 1. Stop the `Empyrion_StarterService` service.
 2. Watch the process list to ensure that both the `EmpAdminHelper_StartService.exe` and `EmpAdminHelper_NoGUI.exe` exit.  You may need to exit the process if that doesn't happen.
 
-#### 4.4 - Starting the server
+### 4.4 - Starting the server
 
 Steps:
 1. Start the Empyrion_StarterService service and check to see if a process for the `EmpAdminHelper_StartService.exe` is running.  We have seen this process sleep, so restart this service if you are not able to bring the EAH online in the following steps.
@@ -612,7 +612,7 @@ Steps:
 6. Start the EAH slave client again.  The client should now connect to the `EmpAdminHelper_NoGUI.exe` process.  You should see a green circle in the orange connect button.
 7. Functions (sidebar) - Server group: Hit the button 'Start'.  The EAH will attempt to start the server process.  It is useful to watch the process list at the server and note what is happening.  The game process will start first, then load processes for at least 2 playfields.
 
-#### 4.5 - Stopping the server
+### 4.5 - Stopping the server
 
 We will usually stop the server from the EAH using one of the available buttons in the EAH, `Stop in 5`, `Stop now`, or `Restart in 5`.  Or we may stop the server by entering the command in EAH's CMD box `saveandexit 10` and pressing the black arrow.  You must press the black arrow for the command to process.
 
@@ -620,7 +620,7 @@ It may be important to watch the process list at the server to make sure that th
 
 It may be useful to stop the Empyrion_StarterService service which will cause the EAH to exit and prevent restart.  Careful with this since the EAH creates additional timeline tasks during restart and those tasks may be re-processed for the event once the EAH is brought back online.  We have not seen an easy way to negate this so be prepared to watch the whole event happen again.
 
-#### 4.6 - Automating restarts using EAH
+### 4.6 - Automating restarts using EAH
 
 We are using the EAH timetables to handle most automation of the game.  We will do this with two lines.  The first line will warn players of the coming restart.  The second will perform the restart as well as a wiping deposits for selected starter playfields.  To handle Thursday player structure wipes without issue we will make a restart schedule for each day of the week.  This allows me to change the schedule for one day without affecting other days.
 ```
@@ -631,7 +631,7 @@ We are using the EAH timetables to handle most automation of the game.  We will 
 ```
 The EAH creates additional timeline tasks during restart so be careful with this since those tasks may be re-processed for the event once the EAH is brought back online.  We have not seen an easy way to negate this so be prepared to watch the whole event happen again.
 
-#### 4.7 - Verify base game files
+### 4.7 - Verify base game files
 
 It's important to verify the game files whenever possible.  You can't know when a problem will occur and it may not yet be obvious that there is an active problem.
 
@@ -644,7 +644,7 @@ d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_u
 The verify fuction may not activate on the first use so it's important to execute the command multiple times until it does.
 
 
-#### 4.8 - Erase existing game to start new game
+### 4.8 - Erase existing game to start new game
 
 Steps:
 1. From an administrative command line execute the following command: `d:\esm\esm delete-all --doit` This will remove the ramdisk and delete any data from the previous save.  This can fail at times.
@@ -655,7 +655,7 @@ Steps:
 6. Continue with section 1.14 - Non-Initial game startup
 
 ************************************************************************
-### 5 - SteamCMD
+## 5 - SteamCMD
 
 SteamCMD is used to install and maintain the base game.  One command is all you need for most everything.  This command is used to install, update, and fix the base game.  When used to install or update the game it is important to run the command multiple times until validation occurs.  Not doing so can result in a broken base game.  Validating the base game is recommended for all occasions.  Please know that validating can and will overwrite changed game settings so it always important to use settings files that are not originated in the base game(ergo: rename you settings files for everything but EAH).
 
@@ -669,7 +669,7 @@ d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_u
 d:\steamcmd\steamcmd.exe +force_install_dir d:\empyrion\ +login anonymous +app_update 530870 validate +quit
 ```
 ************************************************************************
-### 6 - Empyrion Admin Helper (EAH)
+## 6 - Empyrion Admin Helper (EAH)
 
 The EAH is an admin utility (client/server) provided by the game developer.  It runs along side the game and provides features for game management.  The EAH will maintain a database outside of the game and use that data to avoid taxing the game.
 
@@ -691,7 +691,7 @@ Notes:
   - `Check corrupt player files`: Looks for problems with player data and dumps a list of any problems.  Can be done anytime. EAH data only.
 
 ************************************************************************
-### 7 - Empyrion Server Manager(ESM)
+## 7 - Empyrion Server Manager(ESM)
 
 ESM software is a set of scripts that will modify the base game to run in a ramdisk and help you manage the game in that configuration from that point on.  This is an incredibly powerful toolset to elevate game performance and reduce problems.
 
@@ -703,7 +703,7 @@ Use the following command to see a list of possible functions:
 	d:\esm\esm.exe
 
 ************************************************************************
-### 8 - Empyrion Web Access(EWA)
+## 8 - Empyrion Web Access(EWA)
 
 The EWA is a game mod and web frontend for managing an Empyrion server similar to the EAH.  This mod keeps a database much like EAH, but that database is located on the ramdisk, and over time it can and will take up a good amount of space.  The largest file will likely become HistoryBooks.db and can be removed at any time.  This tool uses port 80.  We don't know of a way to change this.  This is important since upon initial use the first admin to login into the EWA becomes the owner, so don't open port 80 if you can avoid doing so.
 
@@ -731,7 +731,7 @@ Steps:
 14. This will be the first access of the EWA so enter a user name and password for the first user to have access to the EWA.
 
 ************************************************************************
-### 9 - CMD
+## 9 - CMD
 
 While using the command line in Windows you will have at least one bad quirk that can make a mess of things, `Quick Edit Mode`.  Disable this option in the Default settings for all commands lines.  You won't need it for anything, and not disabling it can allow scripts to pause forever when the command window is clicked.
 
@@ -741,7 +741,7 @@ Steps:
 3. Click `OK` at the bottom right and close the current command window.
 
 ************************************************************************
-### 10 - Telnet
+## 10 - Telnet
 
 Telnet is important for admin tools to function. For this guide the telnet server resides on port 30004.  For the sake of security, we are not openning this port to the world.
 
