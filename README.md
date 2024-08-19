@@ -192,7 +192,9 @@ Steps:
 
 ### 1.9 - Install scenario
 
-Since there is usually no way to download the scenario directly from steam without providing personal information it is recommended to update the scenario from a personal account using something like https://justbeamit.com/  The scenario you are uploading may come as a folder with a number for a name like: 3143225812.  Zip this folder like it is and beam it up to the server.  It's best that you do NOT use that number as the same name as the scenario folder on the server, so change it when you move the folder into position.
+Since there is usually no way to download the scenario directly from steam without providing personal information it is recommended to update the scenario from a personal account using something like https://justbeamit.com/.
+
+The scenario you are uploading may come as a folder with a number for a name like: `3143225812`.  Zip this folder like it is and beam it up to the server.  It's best that you do NOT use that number as the same name as the scenario folder on the server, so change it before you move the folder into position.
 
 Steps:
 1. Upload the scenario archive to the server.
