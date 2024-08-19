@@ -318,7 +318,7 @@ FILE: SqlQueries_disabled.txt, top only
 
 ##### 1.9.2 - EAH
 
-EAH configuration and files to be found in the location: `d:\empyrion\DedicatedServer\EmpyrionAdminHelper\Config`. Do not rename these files expect to make backups. Setup of the EAH is best done from within the EAH where settings are consolidated into interface.
+EAH configuration and files to be found in the location: `d:\empyrion\DedicatedServer\EmpyrionAdminHelper\Config`. Do not rename these files except to make backups. Setup of the EAH is best done from within the EAH where settings are consolidated into interface.
 
 Files:
 - Settings.XML - Primary EAH configuration.
