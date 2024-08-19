@@ -4,7 +4,7 @@
 
 The knowledge contained within this guide was collected thru the contribution of many people.  This guide offers a single perspective for running an Empyrion server on a headless, Windows server.  Some effort has been made to allow the reader to enter this document at any point without having to read everything, but please be mindful that it is impossible to provide everything needed at every given point without being terribly redundant.
 
-While maintenance to this article may be given for errors, clarity and facts, the author has no interest in discussing the contents of this document or variations on it.  The author encourages others to build a server and learn from the experience.  Do it your way.  It is expected that at some point in time this document, in whole or in part, will no longer be accurate.
+While maintenance to this document may be given for errors, clarity and facts, the author has no interest in discussing the contents of this document or variations on it.  The author encourages others to build a server and learn from the experience.  Do it your way.  It is expected that at some point in time this document, in whole or in part, will no longer be accurate.
 
 The contents of this guide was developed while running a large game server on recent hardware.  The situation was somewhat ideal and so we don't mention many problems that can be had.
 
