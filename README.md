@@ -130,7 +130,7 @@ Steps:
 
 ### 1.4 - Install OSFMount
 
-OSFMount is a utility used be the ESM software for ramdisk creation.  It is one of the fastest free ramdisk solutions available.  DO NOT EVER make any kind of symlink or hard link back to the main drive as this will reduce the speed of the ramdisk to be the same speed of the hard disk!  You can link to it, but never from it.
+OSFMount is a utility used be the ESM software for ramdisk creation.  It is one of the fastest free ramdisk solutions available.  DO NOT EVER make any kind of symlink or hard link from the ramdisk back to the main drive as this will reduce the speed of the ramdisk to be the same speed of the hard disk!  You can link to it, but never from it.
 
 Steps:
 1. Download OSFMount from the following page: [Download](https://www.osforensics.com/tools/mount-disk-images.html)
@@ -772,7 +772,7 @@ The EWA is a game mod and web frontend for managing an Empyrion server similar t
 
 We do not know of a way to start the EWA without first starting the game so there may not be an easy way to manage the game without EAH using the EWA alone.  However using the esm to start the game is possible.
 
-DO NOT EVER make any kind of symlink or hard link back to the main drive as this will reduce the speed of the ramdisk to be the same speed of the hard disk!
+DO NOT EVER make any kind of symlink or hard link from the ramdisk back to the main drive as this will reduce the speed of the ramdisk to be the same speed of the hard disk!
 
 Documentation:
 https://github.com/GitHub-TC/EmpyrionWebAccess
