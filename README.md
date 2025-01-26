@@ -714,6 +714,20 @@ Steps:
 5. From an administrative command line execute the following command: `d:\esm\esm.exe check-requirements` Review feedback and follow any guidance.
 6. Continue with section 1.15 - Non-Initial game startup
 
+### 4.9 Backup and Restore
+
+If you are using the ramdisk option with esm, it is very important to understand how the ramdisk syncornization back to the filesystem functions and how the rolling backups work.  You can refer to the [esm github](https://github.com/Vollinger0/esm) for detailed information on this.
+
+When the game server is shutdown using EAH, esm will syncronize the ramdisk contents back to the savegame mirror, however it will not automatically create a new rolling backup.  In order to ensure that you have a backup of the most recent game data, it is important to create a new rolling backup after the server is shutdown, then create a static backup from that.
+
+Steps to shutdown the server, create a rolling backup and a backup archive:
+1. Shutdown the game server using step in section 4.5
+2. Watch the task manager and wait for all empyrion playfield and dedicated server processes to exit.
+3. From an administrative command line execute the following command: `d:\esm\esm.exe backup-create`
+4. From an administrative command line execute the following command: `d:\esm\esm.exe backup-static-create`
+
+Now you have two mechanisms to restore the game, a rolling mirror and a zipped archive.  Detailed restore process to be documented soon.
+
 ************************************************************************
 ## 5 - SteamCMD
 
