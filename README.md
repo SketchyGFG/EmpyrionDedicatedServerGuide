@@ -1,6 +1,6 @@
 # EmpyrionDedicatedServerConfigurationGuide.txt
 
-# 2024-08-18
+# 2025-02-05
 
 The knowledge contained within this guide was collected thru the contribution of many people.  This guide offers a single perspective for running an Empyrion server on a headless, Windows server.  Some effort has been made to allow the reader to enter this document at any point without having to read everything, but please be mindful that it is impossible to provide everything needed at every given point without being terribly redundant.
 
